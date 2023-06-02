@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GejalaController;
+use App\Http\Controllers\KonsultasiAlergiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::prefix('gejala')->group(function () {
+    Route::get('/', [GejalaController::class, 'index']);
+});
+
+Route::prefix('konsultasi')->group(function () {
+    Route::get('/', [KonsultasiAlergiController::class, 'index']);
+    Route::post('/', [KonsultasiAlergiController::class, 'store']);
 });
