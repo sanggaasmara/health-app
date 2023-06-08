@@ -11,6 +11,8 @@ class GejalaAlergi extends Model
 
     protected $table = 'gejala_alergi';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'id',
         'id_gejala',

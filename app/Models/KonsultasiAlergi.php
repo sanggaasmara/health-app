@@ -25,4 +25,14 @@ class KonsultasiAlergi extends Model
         'hasil_diagnosa',
         'saran',
     ];
+
+    /**
+     * Get all of the gejalas for the KonsultasiAlergi
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gejalas()
+    {
+        return $this->hasMany(Gejala::class, 'id', 'gejala');
+    }
 }

@@ -28,4 +28,6 @@ Route::prefix('gejala')->group(function () {
 Route::prefix('konsultasi')->group(function () {
     Route::get('/', [KonsultasiAlergiController::class, 'index']);
     Route::post('/', [KonsultasiAlergiController::class, 'store']);
+    Route::get('/{id}/diagnosa', [KonsultasiAlergiController::class, 'analisa']);
+    Route::get('/{id}', [KonsultasiAlergiController::class, 'show']);
 });
