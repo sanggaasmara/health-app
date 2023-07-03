@@ -2,15 +2,18 @@
 
 
 @section('content')
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12">
-            <h1>List Konsultasi</h1>
+            <h3>List Konsultasi</h3>
         </div>
     </div>
 
 
-    <div class="card">
-        <div class="card-body">
+@endsection
+
+
+@section('content-card')
+
             <div class="table-responsive">
                 <table class="table" id="konsultasi-table">
                     <thead class="thead-dark" >
@@ -28,8 +31,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
+
 
 
     <div class="modal fade" id="modal-detail-konsul" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -92,6 +94,7 @@
 @section('script')
     <script>
             $(document).ready(function () {
+                checkUrl();
                 $('#konsultasi-table').DataTable({
                     processing: true,
                     serverSide: false,

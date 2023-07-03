@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{asset("style.css")}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
         <div class="container">
 
             <a class="navbar-brand" href="#">Healthy</a>
@@ -20,8 +22,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="/">Konsultasi</a>
+                {{-- <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a> --}}
+                <a class="nav-link active" href="/konsultasi">Konsultasi</a>
                 <a class="nav-link" href="/list-konsultasi">List Konsultasi</a>
                 <a class="nav-link disabled">Disabled</a>
               </div>
@@ -30,8 +32,14 @@
       </nav>
 
 
-      <div class="container my-4">
+      <div class="container my-4 ">
         @yield('content')
+
+        <div class="card border-0 shadow" style="border-radius: 10px">
+            <div class="card-body">
+                @yield('content-card')
+            </div>
+        </div>
       </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -41,5 +49,19 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
     @yield('script')
+
+    <script>
+        function checkUrl() {
+            var url = window.location.pathname;
+            // console.log(url);
+            if (url == '/konsultasi') {
+                $('#navbarNavAltMarkup > div > a:nth-child(1)').addClass('active');
+                $('#navbarNavAltMarkup > div > a:nth-child(2)').removeClass('active');
+            } else if (url == '/list-konsultasi') {
+                $('#navbarNavAltMarkup > div > a:nth-child(1)').removeClass('active');
+                $('#navbarNavAltMarkup > div > a:nth-child(2)').addClass('active');
+            }
+        }
+    </script>
 </body>
 </html>

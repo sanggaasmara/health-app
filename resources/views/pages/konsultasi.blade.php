@@ -4,26 +4,25 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h1>Konsultasi</h1>
+            <h3>Konsultasi</h3>
         </div>
     </div>
 
+@endsection
+
+
+@section('content-card')
+
     <div class="row d-flex">
         <div class="col-md-6">
-            <div class="card border-0 shadow">
-                <div class="card-body">
                         <h3>Catatan</h3>
-                </div>
-            </div>
         </div>
 
         <div class="col-md-6">
 
-            <div class="card border-0 shadow">
-                <div class="card-header">
+
                     <h3>Form Konsultasi</h3>
-                </div>
-                <div class="card-body">
+
                     <div class="form-group">
                         <label for="">Nama</label>
                         <input type="text" id="nama" class="form-control form-control-sm">
@@ -31,7 +30,7 @@
 
                     <div class="form-group">
                         <label for="">Alamat</label>
-                        <textarea name="" id="alamat" cols="30" rows="10" class="form-control form-control-sm"></textarea>
+                        <textarea name="" id="alamat" cols="30" rows="3" class="form-control form-control-sm"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -77,14 +76,14 @@
                         </select>
                     </div>
 
+                    <div class="text-right">
 
-                    <button class="btn btn-sm btn-primary mt-4" id="btn-simpan-konsultasi">
-                        Simpan
-                    </button>
+                        <button class="btn btn-sm btn-primary mt-4" id="btn-simpan-konsultasi">
+                            Simpan
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-        </div>
 
     </div>
 @endsection
