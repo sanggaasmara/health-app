@@ -95,7 +95,7 @@
 
 
     $(document).ready(function() {
-
+        checkUrl();
 
         $('.js-example-basic-multiple').select2({
             placeholder: 'Pilih Gejala',
