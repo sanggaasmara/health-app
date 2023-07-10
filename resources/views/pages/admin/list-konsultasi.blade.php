@@ -131,6 +131,7 @@
             })
 
             $('body').on('click', '.btn-detail-konsul', function () {
+                // console.log("test");
                 $('#modal-detail-konsul').modal('show')
                 var id = $(this).data('id')
                 $.ajax({

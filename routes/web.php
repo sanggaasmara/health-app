@@ -28,3 +28,12 @@ Route::get('/konsultasi', function () {
 Route::get('/list-konsultasi', function () {
     return view('pages.admin.list-konsultasi');
 });
+
+
+Route::get("/gejala", function () {
+    return view('pages.admin.gejala');
+});
+
+Route::get("/alergi", function () {
+    return view('pages.admin.alergi');
+});

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlergiController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\KonsultasiAlergiController;
 use Illuminate\Http\Request;
@@ -23,6 +24,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('gejala')->group(function () {
     Route::get('/', [GejalaController::class, 'index']);
+    Route::post('/', [GejalaController::class, 'store']);
+    Route::get('/{id}', [GejalaController::class, 'show']);
+    Route::put('/{id}', [GejalaController::class, 'update']);
+    Route::delete('/{id}', [GejalaController::class, 'destroy']);
+});
+
+Route::prefix('alergi')->group(function () {
+    Route::get('/', [AlergiController::class, 'index']);
+    Route::post('/', [AlergiController::class, 'store']);
+    Route::get('/{id}', [AlergiController::class, 'show']);
+    Route::put('/{id}', [AlergiController::class, 'update']);
+    Route::delete('/{id}', [AlergiController::class, 'destroy']);
 });
 
 Route::prefix('konsultasi')->group(function () {

@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+@endsection
+
 @section('content')
 <div id="home" class="parallax first-section wow fadeIn mt-0" data-stellar-background-ratio="0.4" style="background-image:url('images/slider-bg.png');">
     <div class="container">

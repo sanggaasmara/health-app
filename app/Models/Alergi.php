@@ -11,7 +11,10 @@ class Alergi extends Model
 
     protected $table = 'alergi';
 
+    public $incrementing = false;
+
     protected $fillable = [
+        'id',
         'nama_alergi'
     ];
 }
