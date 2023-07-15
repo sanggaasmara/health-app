@@ -41,11 +41,17 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-link " href="/">Home <span class="sr-only">(current)</span></a>
+                @if (Cookie::get("admin_cookie") != null)
                 <a class="nav-link " href="/konsultasi">Konsultasi</a>
                 <a class="nav-link" href="/list-konsultasi">List Konsultasi</a>
                 <a class="nav-link" href="/alergi">Alergi</a>
                 <a class="nav-link" href="/gejala">Gejala</a>
+                @endif
+                @if (Cookie::get("admin_cookie") == null)
                 <a class="nav-link " href="/login">Login</a>
+                @else
+                <button class="nav-link btn btn-sm btn-danger" id="btn-logout" >Logout</button>
+                @endif
               </div>
             </div>
         </div>
@@ -98,6 +104,17 @@
             }
 
         }
+
+        $("#btn-logout").click(function () {
+            $.ajax({
+                url : "/api/logout",
+                type : "POST",
+                success : function (data) {
+                    alert("Logout Sukses")
+                    window.location.href = window.location.origin + "/login"
+                }
+            })
+        })
     </script>
 </body>
 </html>

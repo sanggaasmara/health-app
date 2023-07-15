@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlergiController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\KonsultasiAlergiController;
 use Illuminate\Http\Request;
@@ -20,6 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post("/login", [AuthController::class, "login"]);
+// Route::post("/logout", [AuthController::class, "logout"]);
+
+Route::post("/logout", [AuthController::class, "logoutWeb"]);
+
 
 
 Route::prefix('gejala')->group(function () {

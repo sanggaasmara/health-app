@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap">
     <link rel="stylesheet" href="{{asset('style.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 </head>
 <body style="font-family: 'Poppins', sans-serif;">
     <div class="row d-flex" style="height: 100vh">
@@ -46,22 +47,26 @@
             let email = $('#email').val()
             let password = $('#password').val()
 
-            window.location.href = window.location.origin + '/list-konsultasi'
-            // $.ajax({
-            //     url: window.location.origin + '/api/login',
-            //     method: 'POST',
-            //     data: {
-            //         email: email,
-            //         password: password
-            //     },
-            //     success: function(res){
-            //         if(res.status == 'success'){
-            //             window.location.href = window.location.origin + '/dokter'
-            //         }else{
-            //             alert(res.message)
-            //         }
-            //     }
-            // })
+            $.ajax({
+                url: window.location.origin + '/api/login',
+                method: 'POST',
+                data: {
+                    email: email,
+                    password: password
+                },
+                success: function(res){
+
+                    console.log(res)
+                    if(res.status == 'success'){
+                        Cookies.set('admin_cookie', res.data.token)
+                        window.location.href = window.location.origin + '/list-konsultasi'
+                    }else{
+                        alert(res.message)
+                    }
+                },error : function (res) {
+                    alert("Username atau password")
+                }
+            })
         })
     </script>
 </body>

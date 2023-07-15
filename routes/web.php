@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,17 +24,17 @@ Route::get("/login", function () {
 
 Route::get('/konsultasi', function () {
     return view('pages.konsultasi');
-});
+})->middleware("web:admin");
 
 Route::get('/list-konsultasi', function () {
     return view('pages.admin.list-konsultasi');
-});
+})->middleware("web:admin");
 
 
 Route::get("/gejala", function () {
     return view('pages.admin.gejala');
-});
+})->middleware("web:admin");
 
 Route::get("/alergi", function () {
     return view('pages.admin.alergi');
-});
+})->middleware("web:admin");
