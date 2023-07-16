@@ -8,6 +8,7 @@ use App\Models\GejalaAlergi;
 use App\Models\KonsultasiAlergi;
 use App\Traits\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KonsultasiAlergiController extends Controller
 {
@@ -35,10 +36,39 @@ class KonsultasiAlergiController extends Controller
         }
     }
 
+    public function indexMy()
+    {
+        // dd(Auth::user());
+        try {
+            $data = KonsultasiAlergi::where("input_by", Auth::user()->id)->get();
+
+            $gejala = [];
+            if ($data != null) {
+                # code...
+                foreach ($data as $key => $value) {
+                    $gjl = json_decode($value["gejala"]);
+                    foreach ($gjl as $key => $val) {
+                        array_push($gejala, Gejala::find($val));
+                        # code...
+                    }
+                    $value['gejalas'] = $gejala;
+                    $gejala = [];
+                }
+            }
+            return $this->success($data, 'Data Konsultasi Alergi');
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 500);
+        }
+    }
+
     public function store(Request $request)
     {
         try {
             $request['gejala'] = json_encode($request->gejala);
+            if (Auth::check()) {
+                # code...
+                $request["input_by"] = Auth::user()->id ?? null;
+            }
             $data = KonsultasiAlergi::create($request->all());
             return $this->success($data, 'Data Konsultasi Alergi berhasil ditambahkan');
         } catch (\Throwable $th) {

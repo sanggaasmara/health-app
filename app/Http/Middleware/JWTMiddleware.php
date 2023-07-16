@@ -19,6 +19,7 @@ class JWTMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
+        // dd("TETS");
         try {
             $token = Cookie::get('admin_cookie') ? Cookie::get('admin_cookie') : Cookie::get('pasien_cookie');
             $user = JWTAuth::setToken($token)->toUser();
@@ -33,7 +34,7 @@ class JWTMiddleware
         }
 
 
-        if (isset($user) && in_array($user->role, $roles)) {
+        if (isset($user) && in_array($user->roles, $roles)) {
             return $next($request);
         } else {
             return redirect()->route('unauthorized')->with('error', 'Anda tidak memiliki akses');

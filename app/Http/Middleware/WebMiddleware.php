@@ -23,7 +23,6 @@ class WebMiddleware
             $token = Cookie::get('admin_cookie') ? Cookie::get('admin_cookie') : Cookie::get('pasien_cookie');
             $curToken = Cookie::get('admin_cookie') ? 'admin_cookie' : 'pasien_cookie';
             $user = JWTAuth::setToken($token)->toUser();
-            // dd($user);
 
             if ($user == null) {
                 if (Cookie::get('admin_cookie') != null) {
@@ -44,7 +43,7 @@ class WebMiddleware
         }
 
 
-        if (isset($user) && in_array($user->role, $roles)) {
+        if (isset($user) && in_array($user->roles, $roles)) {
 
             return $next($request);
         } else {

@@ -24,6 +24,7 @@ class KonsultasiAlergi extends Model
         'gejala',
         'hasil_diagnosa',
         'saran',
+        'input_by'
     ];
 
     /**

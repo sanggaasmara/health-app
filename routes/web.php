@@ -24,11 +24,15 @@ Route::get("/login", function () {
 
 Route::get('/konsultasi', function () {
     return view('pages.konsultasi');
-})->middleware("web:admin");
+})->middleware("web:admin,user");
 
 Route::get('/list-konsultasi', function () {
     return view('pages.admin.list-konsultasi');
 })->middleware("web:admin");
+
+Route::get('/user/list-konsultasi', function () {
+    return view('pages.user.list-konsultasi');
+})->middleware("web:user");
 
 
 Route::get("/gejala", function () {

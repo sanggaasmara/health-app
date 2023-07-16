@@ -57,9 +57,16 @@
                 success: function(res){
 
                     console.log(res)
+                    var data = res.data
                     if(res.status == 'success'){
-                        Cookies.set('admin_cookie', res.data.token)
-                        window.location.href = window.location.origin + '/list-konsultasi'
+                        if (data["role"] == "admin") {
+
+                            Cookies.set('admin_cookie', res.data.token)
+                            window.location.href = window.location.origin + '/list-konsultasi'
+                        }else{
+                            Cookies.set('pasien_cookie', res.data.token)
+                            window.location.href = window.location.origin + '/user/list-konsultasi'
+                        }
                     }else{
                         alert(res.message)
                     }

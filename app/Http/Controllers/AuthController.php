@@ -21,12 +21,13 @@ class AuthController extends Controller
                 return $this->error('Unauthorized', 401);
             }
 
-            User::find(Auth::user()->id)->update([
+            $data = User::find(Auth::user()->id)->update([
                 'remember_token' => $token,
             ]);
 
+            // $user = Auth
 
-            return $this->success(['token' => $token], 'Berhasil Login');
+            return $this->success(['token' => $token, 'role' => Auth::user()->roles], 'Berhasil Login');
         } catch (\Throwable $th) {
             //throw $th;
             return $this->error($th->getMessage(), $th->getCode());
