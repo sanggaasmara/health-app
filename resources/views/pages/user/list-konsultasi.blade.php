@@ -111,7 +111,6 @@
                         {data: 'id',
                             render : function(data, type, row) {
                                 return `
-                                    <button class="btn btn-sm btn-info">Analisa</button>&nbsp;
 
                                     <button class="btn btn-sm btn-primary btn-detail-konsul" data-id="${data}">Detail</button>`
                             }
