@@ -48,6 +48,7 @@ Route::prefix('alergi')->group(function () {
 Route::prefix('konsultasi')->group(function () {
     Route::get('/', [KonsultasiAlergiController::class, 'index']);
     Route::get('/my', [KonsultasiAlergiController::class, 'indexMy'])->middleware("jwt:user");
+    Route::get('/guest', [KonsultasiAlergiController::class, 'index']);
     Route::post('/', [KonsultasiAlergiController::class, 'store'])->middleware("jwt:user,admin");
     Route::get('/{id}/diagnosa', [KonsultasiAlergiController::class, 'analisa']);
     Route::get('/{id}', [KonsultasiAlergiController::class, 'show']);
