@@ -55,7 +55,7 @@
                 <a class="nav-link " href="/konsultasi">Konsultasi</a>
                 <a class="nav-link" href="/user/list-konsultasi">List Konsultasi</a>
                 @endif
-                @if (Cookie::get("admin_cookie") == null &&Cookie::get("pasien_cookie") == null )
+                @if (Cookie::get("admin_cookie") == null && Cookie::get("pasien_cookie") == null )
                 <a class="nav-link " href="/login">Login</a>
                 @else
                 <button class="nav-link btn btn-sm btn-danger" id="btn-logout" >Logout</button>

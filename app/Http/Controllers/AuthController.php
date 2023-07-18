@@ -52,7 +52,7 @@ class AuthController extends Controller
         if (Cookie::get('admin_cookie')) {
             return redirect('/login')->withoutCookie('admin_cookie');
         } else {
-            return redirect('/login')->withoutCookie('user_cookie');
+            return redirect('/login')->withoutCookie('pasien_cookie');
         }
     }
 
