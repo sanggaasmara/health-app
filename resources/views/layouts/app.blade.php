@@ -42,6 +42,7 @@
               <div class="navbar-nav">
                 <a class="nav-link " href="/">Home <span class="sr-only">(current)</span></a>
                 @if (Cookie::get("admin_cookie") == null ||Cookie::get("pasien_cookie") == null )
+                <a class="nav-link" href="/guest/konsultasi"> Konsultasi</a>
                 <a class="nav-link" href="/guest/list-konsultasi">List Konsultasi</a>
                 @endif
                 @if (Cookie::get("admin_cookie") != null)

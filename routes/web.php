@@ -39,6 +39,10 @@ Route::get("/guest/list-konsultasi", function () {
     return view("pages.guest.list-konsultasi");
 });
 
+Route::get("/guest/konsultasi", function () {
+    return view("pages.konsultasi");
+});
+
 Route::get("/gejala", function () {
     return view('pages.admin.gejala');
 })->middleware("web:admin");
