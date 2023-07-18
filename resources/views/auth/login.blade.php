@@ -71,7 +71,8 @@
                         alert(res.message)
                     }
                 },error : function (res) {
-                    alert("Username atau password")
+                    // alert(res);
+                    alert("Username atau password salah")
                 }
             })
         })

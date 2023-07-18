@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             GejalaSeeder::class,
             AlergiSeeder::class,
             GejalaAlergiSeeder::class,
+            UserSeeder::class
         ]);
     }
 }
