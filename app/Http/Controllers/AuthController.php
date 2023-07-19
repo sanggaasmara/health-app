@@ -7,6 +7,7 @@ use App\Traits\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -17,7 +18,7 @@ class AuthController extends Controller
     {
         try {
             $credentials = $request->only(['email', 'password']);
-            dd(Auth::attempt($credentials));
+            // dd(Auth::attempt($credentials));
             if (!$token = JWTAuth::attempt($credentials)) {
                 return $this->error('Unauthorized', 401);
             }
@@ -32,6 +33,19 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
             return $this->error($th->getMessage(), $th->getCode());
+        }
+    }
+
+    public function register(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $data['password'] = Hash::make($data['password']);
+            $user = User::create($data);
+            return $this->success($user, 'Berhasil Register');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $this->error($th->getMessage(), 400);
         }
     }
 

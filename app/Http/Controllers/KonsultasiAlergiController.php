@@ -64,6 +64,29 @@ class KonsultasiAlergiController extends Controller
     public function store(Request $request)
     {
         try {
+            $user = Auth::user();
+            $request['gejala'] = json_encode($request->gejala);
+            $request['nama'] = $user['name'];
+            $request['email'] = $user['email'];
+            $request['no_hp'] = $user['no_hp'];
+            $request['alamat'] = $user['alamat'];
+            $request['jenis_kelamin'] = $user['jenis_kelamin'];
+            $request['usia'] = $user['usia'];
+            if (Auth::check()) {
+                # code...
+                $request["input_by"] = Auth::user()->id ?? null;
+            }
+            $data = KonsultasiAlergi::create($request->all());
+            return $this->success($data, 'Data Konsultasi Alergi berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 500);
+        }
+    }
+
+    public function storeGuest(Request $request)
+    {
+        # code...
+        try {
             $request['gejala'] = json_encode($request->gejala);
             if (Auth::check()) {
                 # code...

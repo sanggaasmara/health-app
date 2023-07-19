@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post("/login", [AuthController::class, "login"]);
+Route::post("/register", [AuthController::class, "register"]);
 // Route::post("/logout", [AuthController::class, "logout"]);
 
 Route::post("/logout", [AuthController::class, "logoutWeb"]);
@@ -49,7 +50,8 @@ Route::prefix('konsultasi')->group(function () {
     Route::get('/', [KonsultasiAlergiController::class, 'index']);
     Route::get('/my', [KonsultasiAlergiController::class, 'indexMy'])->middleware("jwt:user");
     Route::get('/guest', [KonsultasiAlergiController::class, 'index']);
-    Route::post('/', [KonsultasiAlergiController::class, 'store']);
+    Route::post('/', [KonsultasiAlergiController::class, 'store'])->middleware("jwt:user");
+    Route::post('/guest', [KonsultasiAlergiController::class, 'storeGuest']);
     Route::get('/{id}/diagnosa', [KonsultasiAlergiController::class, 'analisa']);
     Route::get('/{id}', [KonsultasiAlergiController::class, 'show']);
 });

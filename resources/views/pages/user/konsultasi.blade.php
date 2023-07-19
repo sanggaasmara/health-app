@@ -24,52 +24,6 @@
                     <h3>Form Konsultasi</h3>
 
                     <div class="form-group">
-                        <label for="">Nama</label>
-                        <input type="text" id="nama" class="form-control form-control-sm">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Alamat</label>
-                        <textarea name="" id="alamat" cols="30" rows="3" class="form-control form-control-sm"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">No. Hp</label>
-                        <input type="text" id="no_hp" class="form-control form-control-sm">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Usia</label>
-                        <input type="text" name="" id="usia" class="form-control form-control-sm">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="email" id="email" class="form-control form-control-sm">
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="">Jenis Kelamin</label>
-                        <div class="d-flex">
-                            <div class="form-check">
-                                <input class="form-check-input jenis-kelamin" type="radio" name="exampleRadios" id="laki" value="laki-laki" checked>
-                                <label class="form-check-label" for="exampleRadios1">
-                                  Laki - laki
-                                </label>
-                              </div>
-                              &nbsp;
-                              &nbsp;
-                              <div class="form-check">
-                                <input class="form-check-input jenis-kelamin" type="radio" name="exampleRadios" id="perempuan" value="perempuan">
-                                <label class="form-check-label" for="exampleRadios2">
-                                 Perempuan
-                                </label>
-                              </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="">Gejala</label>
                         <select name="gejalas[]" id="gejala" class="js-example-basic-multiple form-control " multiple>
 
@@ -149,26 +103,14 @@
     });
 
     $('#btn-simpan-konsultasi').on('click', function () {
-        var nama = $('#nama').val();
-        var alamat = $('#alamat').val();
-        var no_hp = $('#no_hp').val();
-        var email = $('#email').val();
+
         var gejala = $('#gejala').val();
-        var jenis_kelamin = $('.jenis-kelamin:checked').val();
-        var tanggal_lahir = $('#tanggal_lahir').val();
-        var usia =  $('#usia').val();
-        console.log(usia);
+
         $.ajax({
-            url: window.location.origin + '/api/konsultasi/guest',
+            url: window.location.origin + '/api/konsultasi',
             method: 'POST',
             data: {
-                nama: nama,
-                alamat: alamat,
-                no_hp: no_hp,
-                email: email,
                 gejala: gejala,
-                jenis_kelamin: jenis_kelamin,
-                usia: usia
             },
             success: function (response) {
                 console.log(response);

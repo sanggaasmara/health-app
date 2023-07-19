@@ -22,8 +22,12 @@ Route::get("/login", function () {
     return view('auth.login');
 });
 
+Route::get("/register", function () {
+    return view('auth.register');
+});
+
 Route::get('/konsultasi', function () {
-    return view('pages.konsultasi');
+    return view('pages.user.konsultasi');
 })->middleware("web:admin,user");
 
 Route::get('/list-konsultasi', function () {

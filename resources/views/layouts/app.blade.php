@@ -57,6 +57,7 @@
                 @endif
                 @if (Cookie::get("admin_cookie") == null && Cookie::get("pasien_cookie") == null )
                 <a class="nav-link " href="/login">Login</a>
+                <a class="nav-link " href="/register">Register</a>
                 @else
                 <button class="nav-link btn btn-sm btn-danger" id="btn-logout" >Logout</button>
                 @endif

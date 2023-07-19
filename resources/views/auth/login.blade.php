@@ -1,3 +1,8 @@
+
+@extends('layouts.app')
+
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +17,7 @@
 </head>
 <body style="font-family: 'Poppins', sans-serif;">
     <div class="row d-flex" style="height: 100vh">
-        <div class="col-md-7" style="background:url('https://images.unsplash.com/photo-1628771065518-0d82f1938462?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80');background-size:cover;background-repeat:no-repeat;background-position: center">
+        <div class="col-md-7" style="background:url('https://images.unsplash.com/photo-1628771065518-0d82f1938462?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80');background-size:cover;background-repeat:no-repeat;background-position: right">
 
         </div>
         <div class="col-md-5">
@@ -81,3 +86,4 @@
 </html>
 
 
+@endsection
