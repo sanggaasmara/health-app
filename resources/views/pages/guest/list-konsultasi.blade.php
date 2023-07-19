@@ -142,6 +142,7 @@
                         $('#name').text(data.nama.replace(regex, '*'))
                         $('#usia').text(data.usia)
                         $('#no_hp').text(data.no_hp.replace(regex, '*'))
+                        $('#gejala').html('')
                         data.gejalas.forEach(element => {
                             $('#gejala').append(`<li>${element.gejala}</li>`);
                         });

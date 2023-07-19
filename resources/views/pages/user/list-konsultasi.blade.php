@@ -133,6 +133,7 @@
                         $('#name').text(data.nama)
                         $('#usia').text(data.usia)
                         $('#no_hp').text(data.no_hp)
+                        $('#gejala').html('')
                         data.gejalas.forEach(element => {
                             $('#gejala').append(`<li>${element.gejala}</li>`);
                         });
