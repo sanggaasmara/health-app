@@ -122,7 +122,9 @@
                             render : function(data, type, row) {
                                 return `
 
-                                    <button class="btn btn-sm btn-primary btn-detail-konsul" data-id="${data}">Detail</button>`
+                                    <button class="btn btn-sm btn-primary btn-detail-konsul" data-id="${data}">Detail</button>
+                                    <button class="btn btn-sm btn-danger btn-delete-konsul" data-id="${data}">Delete</button>
+                                    `
                             }
                         },
                     ]
@@ -165,5 +167,29 @@
                 })
             })
 
+            $("body").on('click','.btn-delete-konsul', function () {
+                var id = $(this).data('id')
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/api/konsultasi/${id}`,
+                            type: "DELETE",
+                            success: function (res) {
+                                console.log(res);
+                                $('#konsultasi-table').DataTable().ajax.reload();
+                            }
+                        })
+                    }
+                })
+            })
     </script>
 @endsection

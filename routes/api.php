@@ -63,4 +63,5 @@ Route::prefix('konsultasi')->group(function () {
     Route::post('/guest', [KonsultasiAlergiController::class, 'storeGuest']);
     Route::get('/{id}/diagnosa', [KonsultasiAlergiController::class, 'analisa']);
     Route::get('/{id}', [KonsultasiAlergiController::class, 'show']);
+    Route::delete('/{id}', [KonsultasiAlergiController::class, 'destroy']);
 });

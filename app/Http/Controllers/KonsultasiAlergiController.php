@@ -174,4 +174,15 @@ class KonsultasiAlergiController extends Controller
             //throw $th;
         }
     }
+
+    public function destroy($id)
+    {
+        try {
+            $data = KonsultasiAlergi::find($id);
+            $data->delete();
+            return $this->success($data, 'Data Konsultasi Alergi berhasil dihapus');
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 500);
+        }
+    }
 }
