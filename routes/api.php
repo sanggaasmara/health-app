@@ -4,6 +4,7 @@ use App\Http\Controllers\AlergiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\KonsultasiAlergiController;
+use App\Http\Controllers\RulesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,14 @@ Route::prefix('alergi')->group(function () {
     Route::get('/{id}', [AlergiController::class, 'show']);
     Route::put('/{id}', [AlergiController::class, 'update']);
     Route::delete('/{id}', [AlergiController::class, 'destroy']);
+});
+
+Route::prefix("rules")->group(function () {
+    Route::get("/", [RulesController::class, "index"]);
+    Route::post("/", [RulesController::class, "store"]);
+    Route::get("/{id}", [RulesController::class, "show"]);
+    Route::put("/{id}", [RulesController::class, "update"]);
+    Route::delete("/{id}", [RulesController::class, "destroy"]);
 });
 
 Route::prefix('konsultasi')->group(function () {

@@ -54,3 +54,7 @@ Route::get("/gejala", function () {
 Route::get("/alergi", function () {
     return view('pages.admin.alergi');
 })->middleware("web:admin");
+
+Route::get("/role", function () {
+    return view('pages.admin.role');
+})->middleware("web:admin");

@@ -68,7 +68,11 @@
                         <td class="pb-4" id="hasil">
 
                         </td>
-
+                        <td class="pb-4" style="width: 50px;">
+                            <button class="btn btn-sm btn-primary" id="btn-diagnosa">
+                                Diagnosa
+                            </button>
+                        </td>
                     </tr>
 
                 </table>

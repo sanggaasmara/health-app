@@ -18,4 +18,14 @@ class GejalaAlergi extends Model
         'id_gejala',
         'id_alergi'
     ];
+
+    /**
+     * Get the alergi associated with the GejalaAlergi
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function alergi()
+    {
+        return $this->hasOne(Alergi::class, 'id', 'id_alergi');
+    }
 }

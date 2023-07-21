@@ -48,6 +48,7 @@
                 @if (Cookie::get("admin_cookie") != null)
                 <a class="nav-link" href="/list-konsultasi">List Konsultasi</a>
                 <a class="nav-link" href="/alergi">Alergi</a>
+                <a class="nav-link" href="/role">Role</a>
                 <a class="nav-link" href="/gejala">Gejala</a>
                 @endif
 
