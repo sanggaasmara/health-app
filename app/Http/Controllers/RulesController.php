@@ -43,12 +43,12 @@ class RulesController extends Controller
             // dd($data-[>id_gejala);
             $dataRet = [
                 'id' => $data->id,
-                'alergi' => $data->alergi->nama,
+                'alergi' => $data->alergi->id,
                 'gejala' => []
             ];
             // dd(json_decode($data[$key]['id_gejala']));
             foreach (json_decode($data['id_gejala']) as $k2 => $v2) {
-                array_push($dataRet['gejala'], Gejala::find($v2)->gejala);
+                array_push($dataRet['gejala'], Gejala::find($v2)->id);
             }
             // dd($dataRet);
             return $this->success($dataRet, 'Data Rules');

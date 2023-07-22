@@ -187,6 +187,7 @@
 
 
     $("#btn-add-rule").on('click',function () {
+        $("#rule_id").val("");
         $("#modal-add-rule").modal('show')
         getGejala();
         getAlergi();
@@ -221,5 +222,59 @@
             }
         })
     })
+
+    $("body").on('click', '.btn-hapus-konsul', function () {
+        var id = $(this).data('id');
+       Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Data akan dihapus secara permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+
+            confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url : "/api/rules/"+id,
+                    type: "DELETE",
+                    success: function (data) {
+                        console.log(data);
+                        $("#konsultasi-table").DataTable().ajax.reload();
+                    }
+                })
+            }
+        })
+    })
+
+
+
+    $("body").on('click', '.btn-edit-konsul', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            url : "/api/rules/"+id,
+            type: "GET",
+            success: function (data) {
+                console.log(data);
+                $("#rule_id").val(data.data.id);
+                $("#id").val(data.data.id);
+                getGejala();
+                getAlergi();
+                setTimeout(() => {
+                    console.log(data.data.alergi);
+                    $("#alergi").find('option[value="'+data.data.alergi+'"]').attr('selected', true);
+
+                    $(".select-mygejala").select2().val(data.data.gejala).trigger('change');
+                }, 100);
+                // $("#gejala").val(data.data.id_gejala);
+                // console.log(data.data.alergi);
+                $("#modal-add-rule").modal('show')
+
+            }
+        })
+    })
+
+
 </script>
 @endsection
