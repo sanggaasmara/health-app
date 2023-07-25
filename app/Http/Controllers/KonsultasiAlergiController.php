@@ -115,6 +115,17 @@ class KonsultasiAlergiController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = KonsultasiAlergi::find($id);
+            $data->update($request->all());
+            return $this->success($data, 'Data Konsultasi Alergi berhasil diubah');
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 500);
+        }
+    }
+
     public function analisa($id)
     {
         try {

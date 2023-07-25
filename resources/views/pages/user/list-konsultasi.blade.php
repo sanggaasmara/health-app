@@ -74,6 +74,10 @@
                             </button>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="align-top pb-4">Saran Dokter</td>
+                        <td class="pb-4" id="saran"></td>
+                    </tr>
 
                 </table>
             </div>

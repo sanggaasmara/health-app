@@ -191,5 +191,20 @@
                     }
                 })
             })
+
+            $("#btn-save-konsul").on("click", function () {
+                $.ajax({
+                    url: `/api/konsultasi/${$('#konsul_id').val()}`,
+                    type: "PUT",
+                    data: {
+                        saran: $('#saran').val()
+                    },
+                    success: function (res) {
+                        console.log(res);
+                        $('#konsultasi-table').DataTable().ajax.reload();
+                        $('#modal-detail-konsul').modal('hide')
+                    }
+                })
+            })
     </script>
 @endsection
