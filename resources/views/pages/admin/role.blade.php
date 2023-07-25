@@ -90,7 +90,7 @@
         }
     })
      $(document).ready(function () {
-                checkUrl();
+
                 $('#konsultasi-table').DataTable({
                     processing: true,
                     serverSide: false,

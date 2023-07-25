@@ -94,7 +94,7 @@
         // var w = 'fork'
         // var censored = w.replace(regex, '*')
             $(document).ready(function () {
-                checkUrl();
+
                 $('#konsultasi-table').DataTable({
                     processing: true,
                     serverSide: false,

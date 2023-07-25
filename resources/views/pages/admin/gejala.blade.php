@@ -73,7 +73,7 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        checkUrl();
+
         $('#gejala-table').DataTable({
             processing: true,
                     serverSide: false,

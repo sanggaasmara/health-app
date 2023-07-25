@@ -79,7 +79,7 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        checkUrl();
+
         $('#alergi-table').DataTable({
             processing: true,
                     serverSide: false,
