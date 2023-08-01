@@ -65,6 +65,11 @@
 
                 </select>
                </div>
+               <div class="form-group">
+                <label for="">Saran</label>
+                <br>
+                <textarea name="" class="form-control" style="width: 100%" id="saran" cols="30" rows="10"></textarea>
+               </div>
             </table>
         </div>
         <div class="modal-footer">
@@ -178,6 +183,7 @@
                 $("#id").val(data.data.id);
                 $("#alergi").val(data.data.id_alergi);
                 $("#gejala").val(data.data.id_gejala);
+                $("#saran").val(data.data.saran)
                 $("#modal-add-rule").modal('show')
                 getGejala();
                 getAlergi();
@@ -188,6 +194,7 @@
 
     $("#btn-add-rule").on('click',function () {
         $("#rule_id").val("");
+        $("#saran").val("");
         $("#modal-add-rule").modal('show')
         getGejala();
         getAlergi();
@@ -198,6 +205,7 @@
         var gejala = $("#gejala").val();
         var id = $("#rule_id").val();
         var id_rule= $("#id").val();
+        var saran = $("#saran").val();
         var url = "/api/rules";
         var method = "POST";
 
@@ -213,7 +221,8 @@
             data : {
                 id : id_rule,
                 id_alergi : alergi,
-                id_gejala : gejala
+                id_gejala : gejala,
+                saran : saran
             },
             success: function (data) {
                 console.log(data);
@@ -259,6 +268,7 @@
                 console.log(data);
                 $("#rule_id").val(data.data.id);
                 $("#id").val(data.data.id);
+                $("#saran").val(data.data.saran);
                 getGejala();
                 getAlergi();
                 setTimeout(() => {

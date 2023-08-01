@@ -40,6 +40,58 @@
 
 
     </div>
+
+
+
+    <div class="modal fade" id="modal-hasil-konsul" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detail Konsultasi</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" name="" id="konsul_id" hidden>
+                <table>
+
+                    <tr>
+                        <td class="pb-4" style="width:100px;">Name</td>
+                        <td class="pb-4" id="name-dtl"></td>
+                    </tr>
+                    <tr>
+                        <td class="pb-4">Usia</td>
+                        <td class="pb-4" id="usia-dtl"></td>
+                    </tr>
+                    <tr>
+                        <td class="pb-4">No. HP</td>
+                        <td class="pb-4" id="no_hp-dtl"></td>
+                    </tr>
+                    <tr>
+                        <td class="align-top pb-4">Gejala</td>
+                        <td class="pb-4" id="gejala-dtl"></td>
+                    </tr>
+                    <tr>
+                        <td class="pb-4 align-top">Hasil</td>
+                        <td class="pb-4" id="hasil-dtl">
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="align-top pb-4">Saran Dokter</td>
+                        <td class="pb-4" id="saran-dtl"></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection
 
 
@@ -77,20 +129,6 @@
 
         });
 
-        // $('.js-example-basic-multiple').select2({
-        //     placeholder: 'Pilih Gejala',
-        //     ajax: {
-        //         url: '/api/gejala',
-        //         dataType: 'json',
-        //         delay: 250,
-        //         processResults: function (data) {
-        //             return {
-        //                 results: data.gejala
-        //             };
-        //         },
-        //         cache: true
-        //     }
-        // });
 
         $('#gejala').on('change', function() {
             var gejala = $(this).val();
@@ -112,13 +150,25 @@
             data: {
                 gejala: gejala,
             },
-            success: function (response) {
-                console.log(response);
-                if (response.status == 'success') {
-                    alert(response.message);
+            success: function (data) {
+                console.log(data);
+                var response = data.data;
+                if (data.status == 'success') {
+                    // alert(response.message);
+                    $("#modal-hasil-konsul").modal('show');
+                    $('#konsul_id').val(response.id);
+                    $('#name-dtl').html(response.nama);
+                    $('#usia-dtl').html(response.usia);
+                    $('#no_hp-dtl').html(response.no_hp);
+                    $('#gejala-dtl').html('');
+                    response.gejalas.forEach(element => {
+                            $('#gejala-dtl').append(`<li>${element.gejala}</li>`);
+                        });
+                    $('#hasil-dtl').html(response.hasil_diagnosa);
+                    $('#saran-dtl').html(response.saran);
                     // window.location.href = window.location.origin + '/hasil/' + response.id;
                 } else {
-                    alert(response.message);
+                    alert(data.message);
                 }
             },
             error: function (error) {

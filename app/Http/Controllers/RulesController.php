@@ -44,7 +44,8 @@ class RulesController extends Controller
             $dataRet = [
                 'id' => $data->id,
                 'alergi' => $data->alergi->id,
-                'gejala' => []
+                'gejala' => [],
+                'saran' => $data->saran
             ];
             // dd(json_decode($data[$key]['id_gejala']));
             foreach (json_decode($data['id_gejala']) as $k2 => $v2) {
@@ -63,7 +64,8 @@ class RulesController extends Controller
             $data = GejalaAlergi::create([
                 'id' => $request->id,
                 'id_alergi' => $request->id_alergi,
-                'id_gejala' => json_encode($request->id_gejala)
+                'id_gejala' => json_encode($request->id_gejala),
+                'saran' => $request->saran
             ]);
             return $this->success($data, 'Berhasil Menambahkan Rules');
         } catch (\Throwable $th) {
@@ -77,7 +79,8 @@ class RulesController extends Controller
             $data = GejalaAlergi::find($id)->update([
                 'id' => $request->id,
                 'id_alergi' => $request->id_alergi,
-                'id_gejala' => json_encode($request->id_gejala)
+                'id_gejala' => json_encode($request->id_gejala),
+                'saran' => $request->saran
             ]);
             return $this->success($data, 'Berhasil Mengubah Rules');
         } catch (\Throwable $th) {

@@ -16,7 +16,8 @@ class GejalaAlergi extends Model
     protected $fillable = [
         'id',
         'id_gejala',
-        'id_alergi'
+        'id_alergi',
+        'saran'
     ];
 
     /**

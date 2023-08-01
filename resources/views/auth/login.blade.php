@@ -67,10 +67,10 @@
                         if (data["role"] == "admin") {
 
                             Cookies.set('admin_cookie', res.data.token)
-                            window.location.href = window.location.origin + '/list-konsultasi'
+                            window.location.href = window.location.origin + '/'
                         }else{
                             Cookies.set('pasien_cookie', res.data.token)
-                            window.location.href = window.location.origin + '/user/list-konsultasi'
+                            window.location.href = window.location.origin + '/'
                         }
                     }else{
                         alert(res.message)

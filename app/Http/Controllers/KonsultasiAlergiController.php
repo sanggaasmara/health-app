@@ -9,6 +9,7 @@ use App\Models\KonsultasiAlergi;
 use App\Traits\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class KonsultasiAlergiController extends Controller
 {
@@ -64,6 +65,7 @@ class KonsultasiAlergiController extends Controller
     public function store(Request $request)
     {
         try {
+            DB::beginTransaction();
             $user = Auth::user();
             $request['gejala'] = json_encode($request->gejala);
             $request['nama'] = $user['name'];
@@ -77,8 +79,20 @@ class KonsultasiAlergiController extends Controller
                 $request["input_by"] = Auth::user()->id ?? null;
             }
             $data = KonsultasiAlergi::create($request->all());
-            return $this->success($data, 'Data Konsultasi Alergi berhasil ditambahkan');
+
+            self::analisa($data->id);
+
+            $gejala = [];
+            foreach (json_decode($data['gejala']) as $key => $val) {
+                array_push($gejala, Gejala::find($val));
+            }
+            $dataReturn = KonsultasiAlergi::find($data->id);
+            // dd($dataReturn);
+            $dataReturn['gejalas'] = $gejala;
+            DB::commit();
+            return $this->success($dataReturn, 'Data Konsultasi Alergi berhasil ditambahkan');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $this->error($th->getMessage(), 500);
         }
     }
@@ -87,14 +101,27 @@ class KonsultasiAlergiController extends Controller
     {
         # code...
         try {
+            DB::beginTransaction();
             $request['gejala'] = json_encode($request->gejala);
             if (Auth::check()) {
                 # code...
                 $request["input_by"] = Auth::user()->id ?? null;
             }
             $data = KonsultasiAlergi::create($request->all());
-            return $this->success($data, 'Data Konsultasi Alergi berhasil ditambahkan');
+
+            self::analisa($data->id);
+
+            $gejala = [];
+            foreach (json_decode($data['gejala']) as $key => $val) {
+                array_push($gejala, Gejala::find($val));
+            }
+            $dataReturn = KonsultasiAlergi::find($data->id);
+            // dd($dataReturn);
+            $dataReturn['gejalas'] = $gejala;
+            DB::commit();
+            return $this->success($dataReturn, 'Data Konsultasi Alergi berhasil ditambahkan');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $this->error($th->getMessage(), 500);
         }
     }
@@ -129,6 +156,7 @@ class KonsultasiAlergiController extends Controller
     public function analisa($id)
     {
         try {
+            DB::beginTransaction();
             $data = KonsultasiAlergi::find($id);
             $gejala = [];
             $hasil = [];
@@ -151,13 +179,23 @@ class KonsultasiAlergiController extends Controller
                 }
             }
             $perhitungan = [];
+            $saran = '';
             foreach ($hasil as $key => $value) {
                 if (count($value) == 0) {
                     unset($hasil[$key]);
                 } else {
                     $gjl_al = GejalaAlergi::find($key);
+                    $maxpresentase = null;
+                    $id_maxpresentase = null;
                     $presentase = count($value) / count(json_decode($gjl_al["id_gejala"])) * 100;
                     $presentase = number_format((float)$presentase, 2, '.', '');
+                    if ($maxpresentase == null || $maxpresentase < $presentase) {
+                        # code...
+                        $maxpresentase = $presentase;
+                        // $id_maxpresentase = $key;
+                        $saran = $gjl_al["saran"];
+                    }
+
                     $alergi = Alergi::find($gjl_al["id_alergi"])->nama_alergi;
                     $perhitungan[$key] = [
                         'presentase' => $presentase,
@@ -166,6 +204,11 @@ class KonsultasiAlergiController extends Controller
                     ];
                 }
             }
+
+            $data->update([
+                'saran' => $saran,
+            ]);
+            // dd($data);
 
             $ret = "";
             foreach ($perhitungan as $key => $value) {
@@ -176,13 +219,12 @@ class KonsultasiAlergiController extends Controller
             $data->update([
                 'hasil_diagnosa' => $ret
             ]);
-
+            DB::commit();
 
             return $this->success($ret, 'Data Konsultasi Alergi');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $this->error($th->getMessage(), 500);
-        } catch (\Throwable $th) {
-            //throw $th;
         }
     }
 
