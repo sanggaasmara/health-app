@@ -28,7 +28,7 @@
             <div class="p-lg-5">
 
                 <h3 class="mt-5">Register</h3>
-                <p style="color: rgb(163, 163, 163)">Register untuk mengakses menu pada Dokter</p>
+                <p style="color: rgb(163, 163, 163)">Register untuk mengakses menu pada Pasien</p>
 
                         <div class="row">
                             <div class="col-md-6">

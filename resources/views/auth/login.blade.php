@@ -24,7 +24,7 @@
             <div class="p-lg-5">
 
                 <h3 class="mt-5">Login</h3>
-                <p style="color: rgb(163, 163, 163)">Login untuk mengakses menu pada Dokter</p>
+                <p style="color: rgb(163, 163, 163)">Login untuk mengakses menu pada Pasien</p>
                 <div class="card shadow border-0">
                     <div class="card-body">
                         <div class="form-group">
